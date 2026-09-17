@@ -1,0 +1,296 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Praktikum - Modul 2 & Modul 3</title>
+    <!-- Bootstrap 3 CDN -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <!-- Font Inter -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      body {
+        font-family: 'Inter', sans-serif;
+        background: #f0f4f8;
+        color: #334155;
+        padding-top: 40px;
+        padding-bottom: 60px;
+      }
+
+      /* Memastikan kontainer kartu presisi di tengah */
+      .container-center {
+        max-width: 760px;
+        margin: 0 auto;
+        padding: 0 15px;
+      }
+      
+      .main-card {
+        background: #ffffff;
+        border-radius: 16px;
+        box-shadow: 0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.01);
+        padding: 40px;
+        margin-bottom: 30px;
+        border: 1px solid #e2e8f0;
+      }
+
+      .header-title {
+        text-align: center;
+        margin-bottom: 35px;
+      }
+      .header-title h2 {
+        font-weight: 700;
+        color: #0f172a;
+        margin-bottom: 8px;
+      }
+      .header-title p {
+        color: #64748b;
+        font-size: 14px;
+      }
+
+      .section-badge {
+        display: inline-block;
+        background: #e0f2fe;
+        color: #0284c7;
+        font-weight: 600;
+        font-size: 12px;
+        padding: 4px 12px;
+        border-radius: 20px;
+        margin-bottom: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+
+      .section-title {
+        font-weight: 700;
+        color: #1e293b;
+        margin-top: 0;
+        margin-bottom: 20px;
+        border-bottom: 2px solid #f1f5f9;
+        padding-bottom: 10px;
+      }
+
+      .sub-card {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        border-radius: 10px;
+        padding: 20px;
+        margin-bottom: 20px;
+      }
+
+      .sub-card h4 {
+        font-weight: 600;
+        color: #334155;
+        margin-top: 0;
+        margin-bottom: 15px;
+        font-size: 15px;
+      }
+
+      .drag-box {
+        width: 120px;
+        height: 50px;
+        padding: 8px;
+        border: 2px dashed #cbd5e1;
+        border-radius: 8px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        background: #ffffff;
+        margin-right: 10px;
+      }
+
+      .form-control {
+        border-radius: 8px;
+        height: 42px;
+        border: 1px solid #cbd5e1;
+        box-shadow: none;
+      }
+      .form-control:focus {
+        border-color: #3b82f6;
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.15);
+      }
+
+      .btn-custom {
+        background: #2563eb;
+        color: #ffffff;
+        font-weight: 600;
+        height: 42px;
+        border-radius: 8px;
+        border: none;
+        transition: all 0.2s ease;
+      }
+      .btn-custom:hover {
+        background: #1d4ed8;
+        color: #ffffff;
+      }
+
+      footer {
+        margin-top: 30px;
+        padding-top: 20px;
+        border-top: 1px solid #e2e8f0;
+        text-align: center;
+        color: #64748b;
+        font-size: 14px;
+      }
+    </style>
+
+    <script>
+      function allowDrop(ev) {
+        ev.preventDefault();
+      }
+      function drag(ev) {
+        ev.dataTransfer.setData("text", ev.target.id);
+      }
+      function drop(ev) {
+        ev.preventDefault();
+        var data = ev.dataTransfer.getData("text");
+        ev.target.appendChild(document.getElementById(data));
+      }
+    </script>
+</head>
+<body>
+
+<div class="container-center">
+  <div class="main-card">
+    
+    <div class="header-title">
+      <h2>Dashboard Praktikum Web</h2>
+      <p>Integrasi Modul 2 (Multimedia & API) dan Modul 3 (Bootstrap Form)</p>
+    </div>
+
+    <!-- ================= BAGIAN 1: MODUL 2 ================= -->
+    <div>
+      <span class="section-badge">Modul 2</span>
+      <h3 class="section-title">Multimedia & Web API</h3>
+
+      <!-- 1. Audio -->
+      <div class="sub-card">
+        <h4>1. HTML Audio</h4>
+        <audio controls style="width: 100%;">
+          <source src="https://www.w3schools.com/html/horse.ogg" type="audio/ogg">
+          <source src="horse.mp3" type="audio/mpeg">
+          Browser kamu tidak mendukung elemen audio.
+        </audio>
+      </div>
+
+      <!-- 2. Video dengan Kontrol JS -->
+      <div class="sub-card">
+        <h4>2. HTML Video (dengan Kontrol JavaScript)</h4>
+        <div class="text-center">
+          <div style="margin-bottom: 15px;">
+            <button class="btn btn-primary btn-sm" onclick="playPause()">Play / Pause</button>
+            <button class="btn btn-default btn-sm" onclick="makeBig()">Besar</button>
+            <button class="btn btn-default btn-sm" onclick="makeNormal()">Sedang</button>
+            <button class="btn btn-default btn-sm" onclick="makeSmall()">Kecil</button>
+          </div>
+          <video id="mainVideo" width="320" controls style="border-radius: 8px; transition: width 0.3s ease; max-width: 100%;">
+            <source src="mamboprak.mp4" type="video/mp4">
+            <source src="./mamboprak.mp4" type="video/mp4">
+            Browser kamu tidak mendukung HTML5 video.
+          </video>
+        </div>
+        <script>
+          var video = document.getElementById("mainVideo");
+          function playPause() { 
+            if (video.paused) {
+              video.play();
+            } else {
+              video.pause();
+            }
+          }
+          function makeBig() { video.width = 480; }
+          function makeNormal() { video.width = 320; }
+          function makeSmall() { video.width = 220; }
+        </script>
+      </div>
+
+      <!-- 3. Embed YouTube -->
+      <div class="sub-card">
+        <h4>3. HTML YouTube Video</h4>
+        <div class="embed-responsive embed-responsive-16by9" style="border-radius: 8px; overflow: hidden;">
+          <iframe class="embed-responsive-item" 
+                  src="https://www.youtube.com/embed/ydd-Sz4iMjM" 
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                  allowfullscreen>
+          </iframe>
+        </div>
+      </div>
+
+      <!-- 4. Geolocation API -->
+      <div class="sub-card">
+        <h4>4. HTML Geolocation API</h4>
+        <p style="font-size: 13px; color: #64748b;">Klik tombol untuk mendapatkan koordinat lokasi kamu:</p>
+        <button class="btn btn-info btn-sm" onclick="getLocation()">Dapatkan Lokasi</button>
+        <p id="demo" style="margin-top: 10px; font-weight: 600; color: #0284c7;"></p>
+        <script>
+          var x = document.getElementById("demo");
+          function getLocation() {
+            if (navigator.geolocation) {
+              navigator.geolocation.getCurrentPosition(showPosition);
+            } else {
+              x.innerHTML = "Geolocation tidak didukung oleh browser ini.";
+            }
+          }
+          function showPosition(position) {
+            x.innerHTML = "Latitude: " + position.coords.latitude + "<br>Longitude: " + position.coords.longitude;
+          }
+        </script>
+      </div>
+
+      <!-- 5. Drag and Drop API -->
+      <div class="sub-card">
+        <h4>5. HTML Drag and Drop API</h4>
+        <p style="font-size: 13px; color: #64748b;">Tarik gambar di bawah ke dalam kotak sebelah kanan atau sebaliknya:</p>
+        <div id="div1" class="drag-box" ondrop="drop(event)" ondragover="allowDrop(event)">
+          <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='88' height='31'><rect width='100%' height='100%' fill='%232563eb'/><text x='50%' y='50%' fill='%23ffffff' dominant-baseline='middle' text-anchor='middle' font-family='sans-serif' font-size='12' font-weight='bold'>LOGO</text></svg>" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31" alt="Logo">
+        </div>
+        <div id="div2" class="drag-box" ondrop="drop(event)" ondragover="allowDrop(event)"></div>
+      </div>
+    </div>
+
+    <hr style="margin: 40px 0; border-color: #cbd5e1;">
+
+    <!-- ================= BAGIAN 2: MODUL 3 ================= -->
+    <div>
+      <span class="section-badge" style="background: #fef3c7; color: #d97706;">Modul 3</span>
+      <h3 class="section-title">Form Registrasi Bootstrap</h3>
+
+      <form action="">
+        <div class="form-group">
+          <label for="name">Nama:</label>
+          <input type="text" class="form-control" placeholder="Name" name="nama" required>
+        </div>
+
+        <div class="form-group">
+          <label for="email">Email:</label>
+          <input type="email" class="form-control" placeholder="Email" name="email" required>
+        </div>
+
+        <div class="form-group">
+          <label for="password">Password:</label>
+          <input type="password" class="form-control" placeholder="Password" name="Password" required>
+        </div>
+
+        <div class="form-group">
+          <label for="jk">Jenis Kelamin:</label>
+          <select class="form-control" id="jk">
+            <option>Pria</option>
+            <option>Wanita</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-custom btn-block">Submit</button>
+      </form>
+    </div>
+
+    <!-- FOOTER TUGAS -->
+    <footer>
+      <p><strong>Nama:</strong> Rehan Ibrahim</p>
+      <p><strong>NIM:</strong> 240211060078</p>
+    </footer>
+
+  </div>
+</div>
+
+</body>
+</html>
